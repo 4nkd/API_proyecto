@@ -2,3 +2,4 @@ la estructura de la API se la pedi a chat gpt:
 
 https://chatgpt.com/share/69062048-d894-800d-ac37-e52633d56ce2
 
+Hay cosas que he ido comentando por si me olvida
