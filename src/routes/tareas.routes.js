@@ -7,7 +7,6 @@ const router=Router();
 //no registra el tipo de evento, revisar
 router.post('/evento/:id', verifyToken, postTareaEvento); //crear tarea evento
 
-
 router.put('/evento/:id', verifyToken, putEditTaskEvent)//edita tarea evento
 router.delete('/evento/:id', verifyToken, deleteTaskEvent)//delete tarea evento
 router.get('/evento/:id', verifyToken, getEventByUser)//listar tarea evento

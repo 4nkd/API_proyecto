@@ -4,7 +4,11 @@ import {verifyToken} from '../middleware/auth.middleware.js'
 
 const router=Router();
 
-router.get('/usoAplicaion/:id', verifyToken, getUsosByUser);
-router.post('/usoAplicaion/:id', verifyToken, postUsoApp);
+router.get('/usoAplicaion/:id', verifyToken, getUsosByUser);//get users by id (obviusly)
+router.post('/usoAplicaion/:id', verifyToken, postUsoApp); //el post pues
+
+//estadistica de uso???????
+
+//verificarLimiteUso() → si excede, llama a crearAlerta() <--- no me termino de idear como seria
 
 export default router;

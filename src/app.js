@@ -6,7 +6,9 @@ import habitoRoutes from './routes/habitos.routes.js'
 import rutinaRoutes from './routes/rutinas.routes.js'
 import progresoRoutes from './routes/progreso.routes.js'
 import tareasRoutes from './routes/tareas.routes.js'
+import alertasRoutes from './routes/alertas.routes.js'
 import usoRoutes from './routes/uso.routes.js'
+
 
 const app = express();
 const corsOptions = {
@@ -24,6 +26,7 @@ app.use('/api', habitoRoutes);
 app.use('/api', rutinaRoutes);
 app.use('/api', progresoRoutes);
 app.use('/api', tareasRoutes);
+app.use('/api', alertasRoutes);
 app.use('/api', usoRoutes);
 
 app.use((req, resp, next) => {

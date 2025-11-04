@@ -4,7 +4,9 @@
 /* ROLLBACK; */
 
 
-SELECT * FROM Uso_Aplicaciones WHERE id_usuario = 1;
+SELECT * FROM Alertas WHERE id_usuario = 1;
+
+/*SELECT * FROM Uso_Aplicaciones WHERE id_usuario = 1;*/
 
 /*DESCRIBE Uso_Aplicaciones;*/
 
