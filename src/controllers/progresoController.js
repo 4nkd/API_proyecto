@@ -38,5 +38,21 @@ export const getProgresoByUser = async (req, res) => {
     };
 }
 
-
+export const getEstadisticaProgreso = async (req, res) => {
+    try {
+        const [result] = await conmysql.query(
+            'SELECT estadisticaProgreso(?);',
+            [req.params.id]);
+        if(result.length <= 0) return res.json({
+            cant: 0,
+            message: 'Error creo...'
+        });
+        res.json({
+            cant: result.length,
+            data: result
+        })
+    }catch (error){
+        return res.status(500).json({ message: 'Error in the server: ' + error.message });
+    };
+}
 //estaditica habito?????

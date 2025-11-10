@@ -1,11 +1,3 @@
--- =====================================================
--- Script de creación de tablas para MySQL
--- Base de datos: BienestarDigital (solo estructura)
--- =====================================================
-
--- Usa la base de datos correspondiente antes de ejecutar esto:
--- USE BienestarDigital;
-
 -- ==========================================
 -- Tabla: Usuarios
 -- ==========================================
@@ -13,7 +5,7 @@ CREATE TABLE Usuarios (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE,
-    contraseña_hash VARCHAR(255) NOT NULL,
+    contrasena_hash VARCHAR(255) NOT NULL,
     fecha_registro DATETIME DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 

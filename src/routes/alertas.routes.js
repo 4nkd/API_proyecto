@@ -10,6 +10,6 @@ router.get('/alerta/:id', verifyToken, getAlertaByUser); //alertas por usuario
 router.post('/alerta/:id', verifyToken, postCreateAlerta); //crea alerta
 router.delete('/alerta/:id', verifyToken, deleteAlerta); //delete alerta
 
-//marcar alerta leida????????
+//marcar alerta leida???????? //esto no
 
 export default router;

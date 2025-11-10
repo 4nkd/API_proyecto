@@ -22,7 +22,7 @@ export const register = async (req, res) => {
     res.status(201).json({ message: "Usuario registrado correctamente" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Error interno del servidor" });
+    res.status(500).json({ message: "Error interno del servidor: ", error });
   }
 };
 

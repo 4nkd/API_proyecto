@@ -3,8 +3,11 @@
 /* COMMIT; */
 /* ROLLBACK; */
 
+SHOW FUNCTION STATUS WHERE Db = 'proyecto';
 
-SELECT * FROM Alertas WHERE id_usuario = 1;
+
+
+/* SELECT * FROM Alertas WHERE id_usuario = 1; */
 
 /*SELECT * FROM Uso_Aplicaciones WHERE id_usuario = 1;*/
 
