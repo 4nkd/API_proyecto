@@ -7,7 +7,9 @@ const router=Router();
 router.get('/usoAplicaion/:id', verifyToken, getUsosByUser);//get users by id (obviusly)
 router.post('/usoAplicaion/:id', verifyToken, postUsoApp); //el post pues
 
-//estadistica de uso???????
+
+
+//estadistica de uso??????? ---> modificar tabla, debe de haber un progreso del uso de la aplicacion 
 
 //verificarLimiteUso() → si excede, llama a crearAlerta() <--- no me termino de idear como seria
 
