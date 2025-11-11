@@ -2,6 +2,12 @@ ya está subida la API y la base de datos, ya trabaja desde aqui:
 https://api-proyecto-yvbd.onrender.com/api/login
 
 
+//coasas a aclara
+1. todavia no agrego la funcion de estadistica a la base de datos
+2. creo que tendré que agregar una tabla a la base de datos, pues me doy cuenta que no guarda un registro realmente para ello, pero ese registro es secundario
+3. no se que mas
+
+
 Aqui la base de datos por si la necesitas:
 
 CREATE TABLE Usuarios (
