@@ -3,6 +3,7 @@ https://api-proyecto-yvbd.onrender.com/api/login
 
 
 --Update--
+
 ya creé la tabla y la funcion que calcula el promedio, el ultimo routes devuelve dos valores, el promedio y el total, pero lo hace de forma estraña, estoy viendo como le arreglo
 
 
@@ -231,3 +232,53 @@ BEGIN
 END //
 
 DELIMITER ;
+
+
+
+la nueva tabla de registro de uso de las apps
+CREATE TABLE `Uso_App_Diario` (
+  `id_registro` INT NOT NULL AUTO_INCREMENT,
+  `id_uso` INT NOT NULL,
+  `fecha` DATE NOT NULL,
+  `total_minutos` INT DEFAULT 0 CHECK (`total_minutos` >= 0),
+  PRIMARY KEY (`id_registro`),
+  FOREIGN KEY (`id_uso`) REFERENCES `Uso_Aplicaciones`(`id_uso`) ON DELETE CASCADE ON UPDATE CASCADE,
+  UNIQUE KEY (`id_uso`, `fecha`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+la funcion para el promedio de uso de las apps:
+
+CREATE FUNCTION estadisticaUsoApp(idApp INT, dias INT)
+RETURNS DECIMAL(10,2)
+DETERMINISTIC
+BEGIN
+    DECLARE promedio DECIMAL(10,2);
+    DECLARE fecha_inicio DATE;
+    DECLARE fecha_fin DATE;
+    DECLARE total_minutos_g INT DEFAULT 0;
+    DECLARE total_dias INT DEFAULT 0;
+
+    SET fecha_fin = CURDATE();
+    SET fecha_inicio = DATE_SUB(fecha_fin, INTERVAL dias DAY);
+
+    SELECT COALESCE(SUM(total_minutos), 0)
+    INTO total_minutos_g
+    FROM Uso_App_Diario
+    WHERE id_uso = idApp
+      AND fecha BETWEEN fecha_inicio AND fecha_fin;
+
+    SELECT COUNT(*)
+    INTO total_dias
+    FROM Uso_App_Diario
+    WHERE id_uso = idApp
+      AND fecha BETWEEN fecha_inicio AND fecha_fin;
+
+    IF total_dias = 0 THEN
+        SET promedio = 0;
+    ELSE
+        SET promedio = total_minutos_g / total_dias;
+    END IF;
+
+    RETURN promedio;
+END;
