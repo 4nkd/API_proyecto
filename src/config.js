@@ -11,6 +11,6 @@ export const BD_PORT = process.env.BD_PORT;
 // Puerto de la API
 export const PORT = process.env.PORT || 10000;
 
-// JWT (autenticación)
+// JWT (autenticación) ...
 export const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 export const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '30d';
