@@ -71,39 +71,46 @@ export const getUsoDiarioApp = async (req, res) => {
     };
 }
 
+
 export const getPromedioUsoApp = async (req, res) => {
     try {
-        const {dias} = req.body;
+        const { dias } = req.body;
 
         const [result_prom] = await conmysql.query(
-            'SELECT estadisticaUsoApp(?, ?);',
-            [req.params.id, dias]);
+            'SELECT estadisticaUsoApp(?, ?) AS promedio;',
+            [req.params.id, dias]
+        );
 
         const [result_total] = await conmysql.query(
-            'SELECT COALESCE(SUM(total_minutos), 0) FROM Uso_App_Diario WHERE id_uso = ? AND fecha BETWEEN DATE_SUB(CURDATE(), INTERVAL ? DAY) AND CURDATE();',
-            [req.params.id, dias]);
+            'SELECT COALESCE(SUM(total_minutos), 0) AS total FROM Uso_App_Diario WHERE id_uso = ? AND fecha BETWEEN DATE_SUB(CURDATE(), INTERVAL ? DAY) AND CURDATE();',
+            [req.params.id, dias]
+        );
 
-        if(result_prom.length <= 0 ) return res.json({
-            cant: 0,
-            message: 'Error al conseguir promedio'
-        });
-        if(result_total.length <= 0 ) return res.json({
-            cant: 0,
-            message: 'Error al conseguir total'
-        });
+        if (result_prom.length <= 0)
+            return res.json({
+                cant: 0,
+                message: 'Error al conseguir promedio'
+            });
+
+        if (result_total.length <= 0)
+            return res.json({
+                cant: 0,
+                message: 'Error al conseguir total'
+            });
 
         res.json({
             cant: {
                 cant_prom: result_prom.length,
                 cant_total: result_total.length
             },
-            data_prom: result_prom[0],
-            data_total: result_total[0]
-        })
-    }catch (error){
+            data_prom: parseFloat(result_prom[0].promedio),
+            data_total: parseFloat(result_total[0].total)
+        });
+
+    } catch (error) {
         return res.status(500).json({ message: 'Error in the server: ' + error.message });
-    };
-}
+    }
+};
 
 ///generarEstadisticasUso() esto tambien se podria hacer una funcion de mysql
 
