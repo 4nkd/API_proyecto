@@ -2,9 +2,8 @@ ya está subida la API y la base de datos, ya trabaja desde aqui:
 https://api-proyecto-yvbd.onrender.com/api/login
 
 
-//coasas a aclara
-1. todavia no agrego la funcion de estadistica para el uso de aplicacion, porque:
-2. creo que tendré que agregar una tabla a la base de datos, pues me doy cuenta que no guarda un registro realmente para ello, pero ese registro es secundario
+--Update--
+ya creé la tabla y la funcion que calcula el promedio, el ultimo routes devuelve dos valores, el promedio y el total, pero lo hace de forma estraña, estoy viendo como le arreglo
 
 
 Aqui la base de datos por si la necesitas:

@@ -76,7 +76,7 @@ export const getPromedioUsoApp = async (req, res) => {
         const {dias} = req.body;
 
         const [result_prom] = await conmysql.query(
-            'SELECT estadisticaUsoApp(?, ?) AS promedio_uso;',
+            'SELECT estadisticaUsoApp(?, ?);',
             [req.params.id, dias]);
 
         const [result_total] = await conmysql.query(
@@ -97,10 +97,8 @@ export const getPromedioUsoApp = async (req, res) => {
                 cant_prom: result_prom.length,
                 cant_total: result_total.length
             },
-            data: {
-                data_prom: result_prom,
-                data_total: result_total
-            }
+            data_prom: result_prom[0],
+            data_total: result_total[0]
         })
     }catch (error){
         return res.status(500).json({ message: 'Error in the server: ' + error.message });
