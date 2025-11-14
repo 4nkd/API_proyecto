@@ -19,6 +19,7 @@ export const getAlertaByUser = async (req, res) => {
     };
 }
 
+//awdawd
 export const postCreateAlerta = async (req, res) => {
     try {
         const {tipo_alerta, mensaje, fecha_hora} = req.body;
