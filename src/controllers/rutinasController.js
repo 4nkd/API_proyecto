@@ -119,3 +119,23 @@ export const getHabitoRutina = async (req, res) => {
         return res.status(500).json({ message: 'Error in the server: ' + error.message });
     };
 }
+
+
+// Eliminar un hábito asignado a una rutina
+export const deleteHabitoDeRutina = async (req, res) => {
+  try {
+    const { id_rutina, id_habito } = req.params;
+    const [result] = await conmysql.query(
+      'DELETE FROM Rutina_Habito WHERE id_rutina = ? AND id_habito = ?',
+      [id_rutina, id_habito]
+    );
+
+    if (result.affectedRows <= 0) {
+      return res.status(404).json({ message: 'No se encontró la relación entre rutina y hábito' });
+    }
+
+    res.json({ message: 'Hábito eliminado de la rutina correctamente' });
+  } catch (error) {
+    return res.status(500).json({ message: 'Error en el servidor: ' + error.message });
+  }
+};

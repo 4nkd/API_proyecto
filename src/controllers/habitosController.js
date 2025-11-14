@@ -17,6 +17,26 @@ export const getHabitoByUser = async (req, res) => {
     };
 }
 
+
+// Obtener un hábito por su ID
+export const getHabitoById = async (req, res) => {
+    try {
+        const [result] = await conmysql.query(
+            'SELECT * FROM Habitos WHERE id_habito = ?',
+            [req.params.id]
+        );
+        if (result.length <= 0)
+            return res.json({ cant: 0, message: 'Habito not found' });
+        res.json({ cant: result.length, data: result[0] });
+    } catch (error) {
+        return res.status(500).json({
+            message: 'Error in the server: ' + error.message
+        });
+    }
+};
+
+
+
 //crear nuevo habito  de usuario
 export const postCreateHabito = async (req, res) => {
     try {

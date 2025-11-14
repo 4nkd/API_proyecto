@@ -1,10 +1,14 @@
 import {Router} from 'express';
-import {getHabitoByUser, postCreateHabito, putEditHabito, deleteHabito, putActDesactHabito} from '../controllers/habitosController.js'
+import {getHabitoByUser, postCreateHabito, putEditHabito, deleteHabito, putActDesactHabito, getHabitoById} from '../controllers/habitosController.js'
 import {verifyToken} from '../middleware/auth.middleware.js'
 
 const router=Router();
 
 router.get('/habitos/:id', verifyToken, getHabitoByUser); //habitos por usuario
+
+//innecesario, pero ya que de esto te encargas tu, dele no más
+router.get('/habito/:id', verifyToken, getHabitoById); //get habito por su id
+
 router.post('/habitos/:id', verifyToken, postCreateHabito) //crear nuevo habito
 router.put('/habitos/:id', verifyToken, putEditHabito) //editar habito
 router.delete('/habitos/:id', verifyToken, deleteHabito) //eliminar habito
