@@ -56,7 +56,7 @@ export const postUsoDiarioApp = async (req, res) => {
 export const getUsoDiarioApp = async (req, res) => {
     try {
         const [result] = await conmysql.query(
-            'SELECT * from uso_app_diario WHERE id_uso = ?;',
+            'SELECT * from Uso_App_Diario WHERE id_uso = ?;',
             [req.params.id]);
         if(result.length <= 0) return res.json({
             cant: 0,

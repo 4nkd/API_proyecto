@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import {getUsosByUser, postUsoApp, postUsoDiarioApp, getUsoDiarioApp, getPromedioUsoApp} from '../controllers/usoController.js'
+import {deleteApp, getUsosByUser, postUsoApp, postUsoDiarioApp, getUsoDiarioApp, getPromedioUsoApp} from '../controllers/usoController.js'
 import {verifyToken} from '../middleware/auth.middleware.js'
 
 const router=Router();
