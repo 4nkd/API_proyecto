@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import {getUsosByUser, postUsoApp, postUsoDiarioApp, getUsoDiarioApp, getPromedioUsoApp} from '../controllers/usoController.js'
+import {putUsoDiarioApp, getUsosByUser, postUsoApp, postUsoDiarioApp, getUsoDiarioApp, getPromedioUsoApp} from '../controllers/usoController.js'
 import {verifyToken} from '../middleware/auth.middleware.js'
 
 const router=Router();
@@ -10,6 +10,7 @@ router.post('/usoAplicacion/:id', verifyToken, postUsoApp); //el post pues
 //pude crear otro routes y controller, pero me dio hueva
 router.post('/usoAplicacion/diario/:id', verifyToken, postUsoDiarioApp) // registra el uso del día
 router.get('/usoAplicacion/diario/:id', verifyToken, getUsoDiarioApp) //el uso diario de aquella app
+router.put('/usoAplicacion/diario/:id', verifyToken, putUsoDiarioApp) //editar los miutos limites de las apps
 
 router.get('/usoAplicacion/diario/promedio/:id', verifyToken, getPromedioUsoApp)//promedio en fecha determinada
 

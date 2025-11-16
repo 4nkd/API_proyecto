@@ -71,6 +71,29 @@ export const getUsoDiarioApp = async (req, res) => {
     };
 }
 
+export const putUsoDiarioApp = async (req, res) => {
+    try {
+        const {minutos_uso} = req.body;
+        const [result] = await conmysql.query(
+            'Update Uso_Aplicaciones SET minutos_uso = ? ' +
+            'WHERE id_uso = ?',
+            [minutos_uso, req.params.id]
+        )
+        if (result.affectedRows <= 0) return res.status(404).json({
+            message: 'No se pudo modificar el tiempo limite'
+        });
+        const [row] = await conmysql.query(
+            'SELECT minutos_uso FROM Uso_Aplicaciones Where id_uso = ?',
+            [req.params.id]
+        )
+        res.json(
+            row[0]
+        )
+    } catch (error){
+        return res.status(500).json({ message: 'Error in the server: ' +  error.message });
+    }
+}
+
 
 export const getPromedioUsoApp = async (req, res) => {
     try {
