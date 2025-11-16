@@ -4,8 +4,7 @@ https://api-proyecto-yvbd.onrender.com/api/login
 
 --Update--
 
-ya creé la tabla y la funcion que calcula el promedio, el ultimo routes devuelve dos valores, el promedio y el total, pero lo hace de forma estraña, estoy viendo como le arreglo
-
+Si tienes que cambiarle algo a la Api, AVISA. Ahora me doy cuenta que tengo que hacele cambio yo, unas cosas ahorita que estoy haciendo eso.
 
 Aqui la base de datos por si la necesitas:
 

@@ -74,7 +74,9 @@ export const getUsoDiarioApp = async (req, res) => {
 
 export const getPromedioUsoApp = async (req, res) => {
     try {
-        const { dias } = req.body;
+        //const { dias } = req.body;
+
+        const dias = Number(req.query.dias);
 
         const [result_prom] = await conmysql.query(
             'SELECT estadisticaUsoApp(?, ?) AS promedio;',
