@@ -86,6 +86,33 @@ export const deleteRutina = async (req, res) => {
 
 
 export const postHabitoRutina = async (req, res) => {
+  try {
+    const { id_rutina, id_habito } = req.params;
+
+    // Verificar si ya existe
+    const [existe] = await conmysql.query(
+      'SELECT * FROM Rutina_Habito WHERE id_rutina = ? AND id_habito = ?',
+      [id_rutina, id_habito]
+    );
+
+    if (existe.length > 0) {
+      return res.status(400).json({
+        message: 'Este hábito ya está asignado a la rutina.',
+      });
+    }
+
+    // Si no existe, insertar
+    await conmysql.query(
+      'INSERT INTO Rutina_Habito (id_rutina, id_habito) VALUES (?, ?)',
+      [id_rutina, id_habito]
+    );
+
+    res.status(201).json({ message: 'Hábito asignado a la rutina exitosamente.' });
+  } catch (error) {
+    return res.status(500).json({ message: 'Error en el servidor: ' + error.message });
+  }
+};
+/* export const postHabitoRutina = async (req, res) => {
     try {
         await conmysql.query(
             'INSERT INTO Rutina_Habito (id_rutina, id_habito) VALUES (?,?)',
@@ -95,12 +122,32 @@ export const postHabitoRutina = async (req, res) => {
     }catch (error){
         return res.status(500).json({ message: 'Error in the server: ' + error.message });
     };
-}
+} */
 
 /* GET TODOS LOS HABITOS DE UNA RUTINA
 DEBER DE ESTAR LOS ACTIVOS?
 */
 export const getHabitoRutina = async (req, res) => {
+    try {
+        const [result] = await conmysql.query(
+            'SELECT H.id_habito, H.nombre, H.descripcion, H.frecuencia, H.hora_recordatorio, H.activo ' +
+            'FROM Rutina_Habito RH ' +
+            'INNER JOIN Habitos H ON RH.id_habito = H.id_habito ' +
+            'WHERE RH.id_rutina = ?;',
+            [req.params.id]);
+        if(result.length <= 0) return res.json({
+            cant: 0,
+            message: 'Ningun habito registrado a aquella rutina'
+        });
+        res.json({
+            cant: result.length,
+            data: result
+        })
+    }catch (error){
+        return res.status(500).json({ message: 'Error in the server: ' + error.message });
+    };
+}
+/* export const getHabitoRutina = async (req, res) => {
     try {
         const [result] = await conmysql.query(
             'SELECT H.nombre, H.descripcion, H.frecuencia, H.hora_recordatorio, H.activo ' +
@@ -118,7 +165,7 @@ export const getHabitoRutina = async (req, res) => {
     }catch (error){
         return res.status(500).json({ message: 'Error in the server: ' + error.message });
     };
-}
+} */
 
 
 // Eliminar un hábito asignado a una rutina
