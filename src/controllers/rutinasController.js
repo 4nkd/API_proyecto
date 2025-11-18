@@ -112,6 +112,7 @@ export const postHabitoRutina = async (req, res) => {
     return res.status(500).json({ message: 'Error en el servidor: ' + error.message });
   }
 };
+
 /* export const postHabitoRutina = async (req, res) => {
     try {
         await conmysql.query(
