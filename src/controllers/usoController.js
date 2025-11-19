@@ -1,6 +1,6 @@
 import {conmysql} from '../db.js';
 
-/* ayuwdbiuawn */
+/* ayuwdbiuawn adawdaw*/
 export const postUsoApp = async (req, res) => {
     try {
         const {nombre_app, package_name, fecha, minutos_uso} = req.body;
