@@ -3,13 +3,14 @@ import {conmysql} from '../db.js';
 /* ayuwdbiuawn adawdaw*/
 export const postUsoApp = async (req, res) => {
     try {
-        const {nombre_app, package_name, fecha, minutos_uso} = req.body;
-        if (!nombre_app || !package_name || !fecha || !minutos_uso){
+        const {nombre_app, package_name, fecha/* , minutos_uso */} = req.body;
+        if (!nombre_app || !package_name || !fecha /* || !minutos_uso */){
             return res.status(400).json({ message: "Faltan campos obligatorios" });
         }
         await conmysql.query(
-            'INSERT INTO Uso_Aplicaciones (id_usuario, nombre_app, fecha, minutos_uso, package_name) VALUES (?, ?, ?, ?, ?)',
-            [req.params.id, nombre_app, fecha, minutos_uso, package_name]
+            /* 'INSERT INTO Uso_Aplicaciones (id_usuario, nombre_app, fecha, minutos_uso, package_name) VALUES (?, ?, ?, ?, ?)', */
+            'INSERT INTO Uso_Aplicaciones (id_usuario, nombre_app, fecha, package_name) VALUES (?, ?, ?, ?)',
+            [req.params.id, nombre_app, fecha, /* minutos_uso, */ package_name]
         );
         res.status(201).json({ message: "Limite de uso de aplicacion registrado correctamente"});
     }catch (error){
